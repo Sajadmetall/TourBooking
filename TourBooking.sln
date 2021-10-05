@@ -27,6 +27,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "angular-tour-booking", "ang
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "53039"
+		SlnRelativePath = "angular-tour-booking\"
 	EndProjectSection
 EndProject
 Global
