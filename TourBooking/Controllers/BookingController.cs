@@ -1,4 +1,4 @@
-﻿using Charisma.Domain.Services;
+﻿
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -8,8 +8,8 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http.ModelBinding;
 using TourBooking.Data.Entities;
-using TourBooking.Domain.Services;
-using TourBooking.Domain.ViewModels;
+using TourBooking.Application.Services;
+using TourBooking.Application.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

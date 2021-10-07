@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TourBooking.Domain\TourBooking.Domain.csproj" />
+    <ProjectReference Include="..\TourBooking.Application\TourBooking.Application.csproj" />
     <ProjectReference Include="..\TourBooking.Data\TourBooking.Data.csproj" />
   </ItemGroup>
 

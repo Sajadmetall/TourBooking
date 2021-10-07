@@ -1,4 +1,4 @@
-using Charisma.Domain.Services;
+
 using TourBooking.Data.DBContext;
 using TourBooking.Data.GenericRepository;
 using TourBooking.Data.Repositories;
@@ -16,7 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TourBooking.Domain.Services;
+using TourBooking.Application.Services;
 using Microsoft.AspNetCore.Diagnostics;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
@@ -41,7 +41,6 @@ namespace TourBooking
                 options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
 
             services.AddScoped(typeof(IPersonRepository), typeof(PersonRepository));
-            services.AddScoped(typeof(IPersonService), typeof(PersonService));
 
             services.AddScoped(typeof(IBookingRepository), typeof(BookingRepository));
 
