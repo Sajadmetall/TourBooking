@@ -1,0 +1,35 @@
+<div class="jumbotron py-3">
+  <h1 class="display-4 text-center">Tour Booking Register</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <app-tour-booking-form></app-tour-booking-form>
+  </div>
+  <div class="col-md-6">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>Booking Name</th>
+          <th>Booking Status</th>
+          <th>Booking Price</th>
+          <th> Price currency</th>
+          <th>Create Date</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pd of service.list">
+          <td (click)="populateForm(pd)">{{pd.name}}</td>
+          <td (click)="populateForm(pd)">{{pd.status}}</td>
+          <td (click)="populateForm(pd)">{{pd.price}}</td>
+          <td (click)="populateForm(pd)">{{pd.currency}}</td>
+          <td (click)="populateForm(pd)">{{pd.createDate}}</td>
+          <td>
+            <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.bookingId)"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -35,17 +35,28 @@ namespace TourBooking
 
             services.AddControllers();
             services.AddDbContext<ApplicationDBContext>(
-        options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
+                options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
 
-            services.AddSingleton(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            //services.AddSingleton(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped(typeof(IPersonRepository), typeof(PersonRepository));
             services.AddScoped(typeof(IPersonService), typeof(PersonService));
 
             services.AddScoped(typeof(IBookingRepository), typeof(BookingRepository));
+
+            services.AddScoped(typeof(IPartyLeaderRepository), typeof(PartyLeaderRepository));
             services.AddScoped(typeof(IBookingService), typeof(BookingService));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TourBooking", Version = "v1" });
+            });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder =>
+                       builder.WithOrigins("http://localhost:4200")
+                      .AllowAnyMethod()
+                      .AllowAnyHeader()
+                .Build());
             });
         }
 
@@ -64,11 +75,12 @@ namespace TourBooking
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseCors("CorsPolicy");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }

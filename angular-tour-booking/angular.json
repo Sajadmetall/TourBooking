@@ -34,7 +34,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.sass"
+              "src/styles.sass",
+              "./node_modules/jqwidgets-ng/jqwidgets/styles/jqx.base.css"
             ],
             "scripts": []
           },
@@ -102,7 +103,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.sass"
+              "src/styles.sass",
+              "./node_modules/jqwidgets-ng/jqwidgets/styles/jqx.base.css"
             ],
             "scripts": []
           }

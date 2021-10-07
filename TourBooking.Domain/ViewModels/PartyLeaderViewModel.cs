@@ -9,5 +9,6 @@ namespace TourBooking.Domain.ViewModels
     public class PartyLeaderViewModel
     {
         public Guid? PartyLeaderId { get; set; }
+        public string? Name { get; set; }
     }
 }

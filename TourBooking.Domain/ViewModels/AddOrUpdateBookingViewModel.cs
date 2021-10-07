@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TourBooking.Data.Entities;
+using static TourBooking.Domain.Enumeration.Enumeration;
 
 namespace TourBooking.Domain.ViewModels
 {
-    public class Test
+    public class AddOrUpdateBookingViewModel
     {
         public Guid? BookingId { get; set; }
         [Required]
@@ -16,9 +17,9 @@ namespace TourBooking.Domain.ViewModels
         [Required]
         public Nullable<DateTime> CreateDate { get; set; }
         [Required]
-        public Nullable<Int16> Status { get; set; }
+        public Nullable<BookingStatus> Status { get; set; }
         public string Price { get; set; }
-        public Nullable<Int16> Currency { get; set; }
+        public Nullable<BookingCurrency> Currency { get; set; }
         public List<PartyLeaderViewModel> PartyLeaders { get; set; }
     }
 }

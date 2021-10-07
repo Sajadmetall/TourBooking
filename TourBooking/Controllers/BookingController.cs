@@ -1,4 +1,5 @@
 ﻿using Charisma.Domain.Services;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ using TourBooking.Domain.ViewModels;
 
 namespace TourBooking.Controllers
 {
+    [EnableCors("CorsPolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class BookingController : ControllerBase
@@ -22,9 +24,22 @@ namespace TourBooking.Controllers
         {
             _bookingService = bookingService;
         }
+
+        [HttpGet("GetPartyLeaders")]
+        public async Task<IActionResult> GetPartyLeaders()
+        {
+            var result = await _bookingService.GetPartyLeaders();
+            return Ok(result);
+        }
+        [HttpGet("GetPartyLeadersByBookingId")]
+        public async Task<IActionResult> GetPartyLeadersByBookingId(Guid bookingId)
+        {
+            var result = await _bookingService.GetPartyLeadersByBookingId(bookingId);
+            return Ok(result);
+        }
         // GET: api/<BookingController>
-        [HttpGet]
-        public async Task<IActionResult> GetBooking(BookingViewModel model)
+        [HttpGet("GetBooking")]
+        public async Task<IActionResult> GetBooking([FromQuery] BookingViewModel model)
         {
             var result = await _bookingService.GetBookings(model);
             return Ok(result);
@@ -32,7 +47,7 @@ namespace TourBooking.Controllers
 
         // POST api/<BookingController>
         [HttpPost("AddBooking")]
-        public async Task<IActionResult> AddBooking(BookingViewModel model)
+        public async Task<IActionResult> AddBooking(AddOrUpdateBookingViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -45,8 +60,8 @@ namespace TourBooking.Controllers
                 return Ok(false);
             }
         }
-        [HttpPost("UpdateBooking")]
-        public async Task<IActionResult> UpdateBooking( BookingViewModel model)
+        [HttpPut("UpdateBooking")]
+        public async Task<IActionResult> UpdateBooking(AddOrUpdateBookingViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +74,7 @@ namespace TourBooking.Controllers
                 return Ok(false);
             }
         }
-       
+
 
         // DELETE api/<BookingController>/5
         [HttpDelete("DeleteBooking")]

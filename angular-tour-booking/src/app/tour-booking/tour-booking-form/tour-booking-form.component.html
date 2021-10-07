@@ -1,0 +1,54 @@
+<form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+  <input type="hidden" name="bookingId" [value]="service.formData.bookingId" />
+  <div class="form-group">
+    <label>Booking Name</label>
+    <input class="form-control form-control-lg" placeholder="Booking Name" name="bookingName"
+           #name="ngModel" [(ngModel)]="service.formData.name"
+           required [class.invalid]="name.invalid && name.touched">
+  </div>
+  <div class="form-group">
+    <label>Booking Status</label>
+    <select name="bookingStatus"
+            #status="ngModel"
+            class="form-control form-control-lg"
+            [(ngModel)]="service.formData.status"
+            required [class.invalid]="status.invalid && status.touched">
+      <option *ngFor="let status of statusMethods" [ngValue]="status.id">{{ status.label }}</option>
+    </select>
+
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Booking Price</label>
+      <input class="form-control form-control-lg" placeholder="Booking Price" name="bookingPrice"
+             #price="ngModel" [(ngModel)]="service.formData.price"
+             required [class.invalid]="price.invalid && price.touched">
+    </div>
+    <div class="form-group col-md-6">
+      <label>Booking Price Currency</label>
+      <select name="currency"
+              #currency="ngModel"
+              class="form-control form-control-lg"
+              [(ngModel)]="service.formData.currency"
+              required [class.invalid]="currency.invalid && currency.touched">
+        <option *ngFor="let currency of currencyMethods" [ngValue]="currency.id">{{ currency.label }}</option>
+      </select>
+      
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <ng-multiselect-dropdown [placeholder]="' partyLeaders'"
+                               [settings]="dropdownSettings"
+                               [data]="service.partyLeaders"
+                               [ngModelOptions]="{standalone: true}"
+                               (onSelect)="onItemSelect($event)"
+                               (onSelectAll)="onSelectAll($event)"
+                               [(ngModel)]="service.formData.partyLeaders">
+      </ng-multiselect-dropdown>
+    </div>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">SUBMIT</button>
+  </div>
+</form>
