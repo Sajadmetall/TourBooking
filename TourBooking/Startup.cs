@@ -17,6 +17,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TourBooking.Domain.Services;
+using Microsoft.AspNetCore.Diagnostics;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace TourBooking
 {
@@ -70,7 +73,9 @@ namespace TourBooking
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TourBooking v1"));
             }
 
+            app.UseExceptionHandler("/error");
             app.UseHttpsRedirection();
+
 
             app.UseRouting();
 
