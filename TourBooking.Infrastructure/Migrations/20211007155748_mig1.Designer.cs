@@ -10,8 +10,8 @@ using TourBooking.Infrastructure.DBContext;
 namespace TourBooking.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20211007154828_mig")]
-    partial class mig
+    [Migration("20211007155748_mig1")]
+    partial class mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace TourBooking.Infrastructure.Migrations
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("TourBooking.Infrastructure.Entities.Booking", b =>
+            modelBuilder.Entity("TourBooking.Domain.Entities.Booking", b =>
                 {
                     b.Property<Guid>("BookingId")
                         .ValueGeneratedOnAdd()
@@ -48,7 +48,7 @@ namespace TourBooking.Infrastructure.Migrations
                     b.ToTable("Bookings");
                 });
 
-            modelBuilder.Entity("TourBooking.Infrastructure.Entities.BookingPartyLeader", b =>
+            modelBuilder.Entity("TourBooking.Domain.Entities.BookingPartyLeader", b =>
                 {
                     b.Property<Guid>("BookingId")
                         .HasColumnType("uniqueidentifier");
@@ -63,7 +63,7 @@ namespace TourBooking.Infrastructure.Migrations
                     b.ToTable("BookingPartyLeaders");
                 });
 
-            modelBuilder.Entity("TourBooking.Infrastructure.Entities.PartyLeader", b =>
+            modelBuilder.Entity("TourBooking.Domain.Entities.PartyLeader", b =>
                 {
                     b.Property<Guid>("PartyLeaderId")
                         .ValueGeneratedOnAdd()
@@ -89,15 +89,15 @@ namespace TourBooking.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("TourBooking.Infrastructure.Entities.BookingPartyLeader", b =>
+            modelBuilder.Entity("TourBooking.Domain.Entities.BookingPartyLeader", b =>
                 {
-                    b.HasOne("TourBooking.Infrastructure.Entities.Booking", "Booking")
+                    b.HasOne("TourBooking.Domain.Entities.Booking", "Booking")
                         .WithMany("BookingPartyLeaders")
                         .HasForeignKey("BookingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TourBooking.Infrastructure.Entities.PartyLeader", "PartyLeader")
+                    b.HasOne("TourBooking.Domain.Entities.PartyLeader", "PartyLeader")
                         .WithMany("BookingPartyLeaders")
                         .HasForeignKey("PartyLeaderId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -108,12 +108,12 @@ namespace TourBooking.Infrastructure.Migrations
                     b.Navigation("PartyLeader");
                 });
 
-            modelBuilder.Entity("TourBooking.Infrastructure.Entities.Booking", b =>
+            modelBuilder.Entity("TourBooking.Domain.Entities.Booking", b =>
                 {
                     b.Navigation("BookingPartyLeaders");
                 });
 
-            modelBuilder.Entity("TourBooking.Infrastructure.Entities.PartyLeader", b =>
+            modelBuilder.Entity("TourBooking.Domain.Entities.PartyLeader", b =>
                 {
                     b.Navigation("BookingPartyLeaders");
                 });

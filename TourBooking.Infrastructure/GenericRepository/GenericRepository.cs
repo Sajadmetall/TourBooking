@@ -23,7 +23,7 @@ namespace TourBooking.Infrastructure.GenericRepository
         {
             return table.ToList();
         }
-        public IQueryable<T> GetAllAsQueryAble()
+        public IQueryable<T> GetAllAsQueryable()
         {
             return table.AsQueryable();
         }

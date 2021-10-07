@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TourBooking.Application.Enumeration
 {
-    public class Enumeration
+    public class BookingEnumeration
     {
         public enum BookingStatus
         {

@@ -1,11 +1,6 @@
-﻿using TourBooking.Infrastructure.Entities;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using TourBooking.Domain.Entities;
 
 namespace TourBooking.Infrastructure.DBContext
 {

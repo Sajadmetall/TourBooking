@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using System;
 using System.Threading.Tasks;
 using TourBooking.Application.Services;
@@ -11,7 +12,8 @@ using TourBooking.Application.ViewModels;
 namespace TourBooking.Controllers
 {
     [EnableCors("CorsPolicy")]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/[controller]/v{version:apiVersion}")]
     [ApiController]
     public class BookingController : ControllerBase
     {

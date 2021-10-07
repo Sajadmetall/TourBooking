@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TourBooking.Infrastructure.DBContext;
-using TourBooking.Infrastructure.Entities;
+using TourBooking.Domain.Entities;
 using TourBooking.Infrastructure.GenericRepository;
 
 namespace TourBooking.Infrastructure.Repositories

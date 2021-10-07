@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TourBooking.Infrastructure.Entities
+namespace TourBooking.Domain.Entities
 {
     public class Booking
     {

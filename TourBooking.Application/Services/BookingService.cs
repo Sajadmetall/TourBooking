@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TourBooking.Application.ViewModels;
-using TourBooking.Infrastructure.Entities;
+using TourBooking.Domain.Entities;
 using TourBooking.Infrastructure.Repositories;
-using static TourBooking.Application.Enumeration.Enumeration;
+using static TourBooking.Application.Enumeration.BookingEnumeration;
 
 namespace TourBooking.Application.Services
 {
@@ -24,7 +24,7 @@ namespace TourBooking.Application.Services
 
         public async Task<List<PartyLeaderViewModel>> GetPartyLeaders()
         {
-            return await _partyLeaderRepository.GetAllAsQueryAble()
+            return await _partyLeaderRepository.GetAllAsQueryable()
                 .Select(x => new PartyLeaderViewModel
                 {
                     PartyLeaderId = x.PartyLeaderId,
@@ -33,7 +33,7 @@ namespace TourBooking.Application.Services
         }
         public async Task<List<PartyLeaderViewModel>> GetPartyLeadersByBookingId(Guid bookingId)
         {
-            var result = await _partyLeaderRepository.GetAllAsQueryAble()
+            var result = await _partyLeaderRepository.GetAllAsQueryable()
                 .Include(x => x.BookingPartyLeaders)
                 .Where(x => x.BookingPartyLeaders.Any(y => y.BookingId == bookingId))
                 .Select(x => new PartyLeaderViewModel
@@ -45,7 +45,7 @@ namespace TourBooking.Application.Services
         }
         public async Task<List<BookingViewModel>> GetBookings(BookingViewModel booking)
         {
-            var bookingItems = _bookingRepository.GetAllAsQueryAble();
+            var bookingItems = _bookingRepository.GetAllAsQueryable();
 
             if (!string.IsNullOrEmpty(booking.Name))
                 bookingItems = bookingItems.Where(x => x.Name.Contains(booking.Name));
@@ -78,7 +78,7 @@ namespace TourBooking.Application.Services
         }
         public async Task<int> UpdateBooking(AddOrUpdateBookingViewModel bookingViewModel)
         {
-            var booking = await _bookingRepository.GetAllAsQueryAble().Where(x => x.BookingId == bookingViewModel.BookingId)
+            var booking = await _bookingRepository.GetAllAsQueryable().Where(x => x.BookingId == bookingViewModel.BookingId)
                 .Include(x => x.BookingPartyLeaders)
                 .Where(x => x.BookingId == bookingViewModel.BookingId).SingleOrDefaultAsync();//SetBookingModel(bookingViewModel);
 

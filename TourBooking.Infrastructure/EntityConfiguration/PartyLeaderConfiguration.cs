@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TourBooking.Infrastructure.Entities;
+using TourBooking.Domain.Entities;
 
 namespace TourBooking.Infrastructure.EntityConfiguration
 {

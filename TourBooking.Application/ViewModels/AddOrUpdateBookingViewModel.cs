@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using static TourBooking.Application.Enumeration.Enumeration;
+using static TourBooking.Application.Enumeration.BookingEnumeration;
 
 namespace TourBooking.Application.ViewModels
 {

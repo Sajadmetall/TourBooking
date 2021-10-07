@@ -1,4 +1,4 @@
-﻿using TourBooking.Infrastructure.Entities;
+﻿using TourBooking.Domain.Entities;
 using TourBooking.Infrastructure.GenericRepository;
 
 namespace TourBooking.Infrastructure.Repositories

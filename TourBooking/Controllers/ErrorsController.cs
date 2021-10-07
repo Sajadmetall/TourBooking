@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,17 @@ namespace TourBooking.Controllers
     [ApiExplorerSettings(IgnoreApi = true)]
     public class ErrorsController : ControllerBase
     {
+        private readonly ILogger _logger;
+        public ErrorsController( ILogger logger)
+        {
+            _logger = logger;
+        }
         [Route("error")]
         public Exception Error()
         {
             var context = HttpContext.Features.Get<IExceptionHandlerFeature>();
-            var exception = context.Error; 
+            var exception = context.Error;
+            _logger.Error(exception, "general error handler catch this error");
             var code = 500; 
 
             if (exception is HttpStatusException httpException)

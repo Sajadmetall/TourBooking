@@ -9,7 +9,7 @@ export class TourBookingDetailService {
 
   constructor(private http: HttpClient) { }
 
-  readonly baseURL = 'https://localhost:5001/api/Booking'
+  readonly baseURL = 'https://localhost:5001/api/Booking/v1'
   formData: TourBookingDetail = new TourBookingDetail();
   list: TourBookingDetail[] = [];
   partyLeaders: PartyLeaderDetail[]=[];

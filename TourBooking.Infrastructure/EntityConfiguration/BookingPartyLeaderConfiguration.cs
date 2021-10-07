@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TourBooking.Infrastructure.Entities;
+using TourBooking.Domain.Entities;
 
 namespace TourBooking.Infrastructure.EntityConfiguration
 {

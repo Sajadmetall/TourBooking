@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static TourBooking.Application.Enumeration.Enumeration;
+using static TourBooking.Application.Enumeration.BookingEnumeration;
 
 namespace TourBooking.Application.ViewModels
 {

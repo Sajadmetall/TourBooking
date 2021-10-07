@@ -14,4 +14,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TourBooking.Domain\TourBooking.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

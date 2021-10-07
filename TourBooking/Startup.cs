@@ -1,6 +1,6 @@
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,8 +26,17 @@ namespace TourBooking
         {
 
             services.AddControllers();
+            services.AddApiVersioning(x =>
+            {
+                x.DefaultApiVersion = new ApiVersion(1, 0);
+                x.AssumeDefaultVersionWhenUnspecified = true;
+                x.ReportApiVersions = true;
+            });
             services.AddDbContext<ApplicationDBContext>(
-                options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
+                options => {
+                    options.UseSqlServer("name=ConnectionStrings:DefaultConnection");
+                    options.EnableSensitiveDataLogging();
+                });
 
 
             services.AddScoped(typeof(IBookingRepository), typeof(BookingRepository));
@@ -63,7 +72,6 @@ namespace TourBooking
 
             app.UseExceptionHandler("/error");
             app.UseHttpsRedirection();
-
 
             app.UseRouting();
 
