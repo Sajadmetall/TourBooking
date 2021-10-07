@@ -10,7 +10,7 @@ using TourBooking.Data.DBContext;
 namespace TourBooking.Data.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20211004191340_m1")]
+    [Migration("20211007123201_m1")]
     partial class m1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

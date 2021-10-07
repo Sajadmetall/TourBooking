@@ -40,7 +40,6 @@ namespace TourBooking
             services.AddDbContext<ApplicationDBContext>(
                 options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
 
-            //services.AddSingleton(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped(typeof(IPersonRepository), typeof(PersonRepository));
             services.AddScoped(typeof(IPersonService), typeof(PersonService));
 
@@ -64,8 +63,10 @@ namespace TourBooking
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDBContext dataContext)
         {
+            dataContext.Database.Migrate();
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
