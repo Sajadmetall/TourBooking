@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using TourBooking.Application.Services;
+using TourBooking.Domain.Contracts;
 using TourBooking.Infrastructure.DBContext;
 using TourBooking.Infrastructure.Repositories;
 

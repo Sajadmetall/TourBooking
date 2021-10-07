@@ -1,7 +1,6 @@
 ﻿using TourBooking.Domain.Entities;
-using TourBooking.Infrastructure.GenericRepository;
 
-namespace TourBooking.Infrastructure.Repositories
+namespace TourBooking.Domain.Contracts
 {
     public interface IBookingRepository: IGenericRepository<Booking>
     {

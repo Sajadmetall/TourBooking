@@ -1,7 +1,7 @@
 ﻿using TourBooking.Domain.Entities;
-using TourBooking.Infrastructure.GenericRepository;
+using TourBooking.Domain.Contracts;
 
-namespace TourBooking.Infrastructure.Repositories
+namespace TourBooking.Domain.Contracts
 {
     public interface IPartyLeaderRepository : IGenericRepository<PartyLeader>
     {

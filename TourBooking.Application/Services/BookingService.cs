@@ -2,11 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using TourBooking.Application.ViewModels;
+using TourBooking.Domain.Contracts;
 using TourBooking.Domain.Entities;
-using TourBooking.Infrastructure.Repositories;
 using static TourBooking.Application.Enumeration.BookingEnumeration;
 
 namespace TourBooking.Application.Services
