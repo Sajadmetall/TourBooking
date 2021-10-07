@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TourBooking.Data.DBContext;
-using TourBooking.Data.Entities;
-using TourBooking.Data.GenericRepository;
+using TourBooking.Infrastructure.DBContext;
+using TourBooking.Infrastructure.Entities;
+using TourBooking.Infrastructure.GenericRepository;
 
-namespace TourBooking.Data.Repositories
+namespace TourBooking.Infrastructure.Repositories
 {
     public class BookingRepository: GenericRepository<Booking>, IBookingRepository
     {

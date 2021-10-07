@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourBooking", "TourBooking\TourBooking.csproj", "{5E931C32-C9A6-454F-B4D6-D28AEEE5CC98}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourBooking.Data", "TourBooking.Data\TourBooking.Data.csproj", "{A600498C-EFC7-4C6D-9039-2AD67A90AE21}"
-EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "angular-tour-booking", "angular-tour-booking\", "{88169939-6466-4774-9BFC-3F16589E218F}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
@@ -30,6 +28,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "angular-tour-booking", "ang
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourBooking.Application", "TourBooking.Application\TourBooking.Application.csproj", "{B2A8F609-0AD4-4DD8-9EE3-7806847934F6}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourBooking.Infrastructure", "TourBooking.Infrastructure\TourBooking.Infrastructure.csproj", "{DBA0FB1C-7B7C-40C7-A0FF-48644E00C3A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,18 +40,17 @@ Global
 		{5E931C32-C9A6-454F-B4D6-D28AEEE5CC98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E931C32-C9A6-454F-B4D6-D28AEEE5CC98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E931C32-C9A6-454F-B4D6-D28AEEE5CC98}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A600498C-EFC7-4C6D-9039-2AD67A90AE21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A600498C-EFC7-4C6D-9039-2AD67A90AE21}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A600498C-EFC7-4C6D-9039-2AD67A90AE21}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A600498C-EFC7-4C6D-9039-2AD67A90AE21}.Release|Any CPU.Build.0 = Release|Any CPU
 		{88169939-6466-4774-9BFC-3F16589E218F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{88169939-6466-4774-9BFC-3F16589E218F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88169939-6466-4774-9BFC-3F16589E218F}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{88169939-6466-4774-9BFC-3F16589E218F}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{B2A8F609-0AD4-4DD8-9EE3-7806847934F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B2A8F609-0AD4-4DD8-9EE3-7806847934F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2A8F609-0AD4-4DD8-9EE3-7806847934F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2A8F609-0AD4-4DD8-9EE3-7806847934F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBA0FB1C-7B7C-40C7-A0FF-48644E00C3A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBA0FB1C-7B7C-40C7-A0FF-48644E00C3A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBA0FB1C-7B7C-40C7-A0FF-48644E00C3A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBA0FB1C-7B7C-40C7-A0FF-48644E00C3A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

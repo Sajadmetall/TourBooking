@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TourBooking.Data.Entities
+namespace TourBooking.Infrastructure.Entities
 {
     public class BookingPartyLeader
     {

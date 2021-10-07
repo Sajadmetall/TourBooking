@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TourBooking.Application.ViewModels;
-using TourBooking.Data.Entities;
-using TourBooking.Data.Repositories;
+using TourBooking.Infrastructure.Entities;
+using TourBooking.Infrastructure.Repositories;
 using static TourBooking.Application.Enumeration.Enumeration;
 
 namespace TourBooking.Application.Services

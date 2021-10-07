@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace TourBooking.Data.Migrations
+namespace TourBooking.Infrastructure.Migrations
 {
-    public partial class m1 : Migration
+    public partial class mig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,19 +33,6 @@ namespace TourBooking.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PartyLeader", x => x.PartyLeaderId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Persons",
-                columns: table => new
-                {
-                    PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FamilyName = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Persons", x => x.PersonId);
                 });
 
             migrationBuilder.CreateTable(
@@ -92,9 +79,6 @@ namespace TourBooking.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "BookingPartyLeaders");
-
-            migrationBuilder.DropTable(
-                name: "Persons");
 
             migrationBuilder.DropTable(
                 name: "Bookings");

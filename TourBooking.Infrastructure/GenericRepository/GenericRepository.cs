@@ -1,9 +1,9 @@
-﻿using TourBooking.Data.DBContext;
+﻿using TourBooking.Infrastructure.DBContext;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TourBooking.Data.GenericRepository
+namespace TourBooking.Infrastructure.GenericRepository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {

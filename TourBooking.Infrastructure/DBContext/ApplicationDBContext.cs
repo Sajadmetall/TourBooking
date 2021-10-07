@@ -1,4 +1,4 @@
-﻿using TourBooking.Data.Entities;
+﻿using TourBooking.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 
-namespace TourBooking.Data.DBContext
+namespace TourBooking.Infrastructure.DBContext
 {
     public class ApplicationDBContext : DbContext
     {
@@ -16,7 +16,6 @@ namespace TourBooking.Data.DBContext
         public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : base(options)
         {
         }
-        public DbSet<Person> Persons { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<BookingPartyLeader> BookingPartyLeaders { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

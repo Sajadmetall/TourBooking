@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TourBooking.Data.GenericRepository
+namespace TourBooking.Infrastructure.GenericRepository
 {
     public interface IGenericRepository<T> where T : class
     {

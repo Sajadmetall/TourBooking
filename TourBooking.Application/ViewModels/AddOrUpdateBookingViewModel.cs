@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TourBooking.Data.Entities;
 using static TourBooking.Application.Enumeration.Enumeration;
 
 namespace TourBooking.Application.ViewModels
