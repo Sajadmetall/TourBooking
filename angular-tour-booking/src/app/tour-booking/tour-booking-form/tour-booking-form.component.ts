@@ -74,13 +74,12 @@ export class TourBookingFormComponent implements OnInit {
     this.service.formData = new TourBookingDetail();
   }
   onItemSelect(item: any) {
-    debugger;
+    
+    this.service.formData.partyLeaders.splice(item);
     this.service.formData.partyLeaders.push(item);
-    console.log(item);
   }
   onSelectAll(items: any) {
-
+    
     this.service.formData.partyLeaders.push(items);
-    console.log(items);
   }
 }

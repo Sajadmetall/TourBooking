@@ -18,7 +18,7 @@ export class TourBookingComponent implements OnInit {
   }
 
   populateForm(selectedRecord: TourBookingDetail) {
-    debugger;
+    
     
     this.service.formData = Object.assign({}, selectedRecord);
     this.service.getPartyLeadersByBookingId();
@@ -26,7 +26,7 @@ export class TourBookingComponent implements OnInit {
 
   onDelete(id: number) {
     if (confirm('Are you sure to delete this record?')) {
-      debugger;
+      
       this.service.deleteBooking(id)
         .subscribe(
           res => {

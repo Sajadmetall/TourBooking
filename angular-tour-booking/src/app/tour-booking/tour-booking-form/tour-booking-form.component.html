@@ -10,6 +10,7 @@
     <label>Booking Status</label>
     <select name="bookingStatus"
             #status="ngModel"
+            [value]='0'
             class="form-control form-control-lg"
             [(ngModel)]="service.formData.status"
             required [class.invalid]="status.invalid && status.touched">
@@ -28,6 +29,7 @@
       <label>Booking Price Currency</label>
       <select name="currency"
               #currency="ngModel"
+              [value]='0'
               class="form-control form-control-lg"
               [(ngModel)]="service.formData.currency"
               required [class.invalid]="currency.invalid && currency.touched">

@@ -23,21 +23,21 @@ namespace TourBooking.Application.ViewModels
         public static string SetStatusText(BookingStatus status)
         {
             if (status == BookingStatus.Temporary)
-                return "Temporary";
+                return BookingStatus.Temporary.ToString();
             else if (status == BookingStatus.Confirmed)
-                return "Confirmed";
+                return BookingStatus.Confirmed.ToString();
             else
-                return "Canceled";
+                return BookingStatus.Canceled.ToString();
         }
 
         internal static string SetCurrencyText(BookingCurrency currency)
         {
             if (currency == BookingCurrency.USDolar)
-                return "USDolar";
+                return BookingCurrency.USDolar.ToString();
             else if (currency == BookingCurrency.Euro)
-                return "Euro";
+                return BookingCurrency.Euro.ToString();
             else
-                return "Pound";
+                return BookingCurrency.Pound.ToString();
         }
     }
 }
