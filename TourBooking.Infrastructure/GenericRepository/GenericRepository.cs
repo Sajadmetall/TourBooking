@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TourBooking.Domain.Contracts;
+using Microsoft.EntityFrameworkCore;
 
 namespace TourBooking.Infrastructure.GenericRepository
 {
@@ -26,7 +27,7 @@ namespace TourBooking.Infrastructure.GenericRepository
         }
         public IQueryable<T> GetAllAsQueryable()
         {
-            return table.AsQueryable();
+            return table.AsQueryable().AsNoTracking();
         }
         public T GetById(object id)
         {

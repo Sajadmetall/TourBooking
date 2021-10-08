@@ -71,7 +71,14 @@ namespace TourBooking.Application.Services
         }
         public async Task<int> AddBooking(AddOrUpdateBookingViewModel bookingViewModel)
         {
-            var booking = SetBookingModel(bookingViewModel);
+            var booking = Booking.AddBooking(Guid.NewGuid(),bookingViewModel.Name,DateTime.Now,(Int16)bookingViewModel.Status,
+                bookingViewModel.Price,(Int16)bookingViewModel.Currency);
+            
+            booking.BookingPartyLeaders = bookingViewModel.PartyLeaders.Select(x => new BookingPartyLeader
+            {
+                BookingId = booking.BookingId,
+                PartyLeaderId = x.PartyLeaderId.GetValueOrDefault()
+            }).ToList();
             _bookingRepository.Insert(booking);
             return await _bookingRepository.SaveChangesAsync();
         }
@@ -79,46 +86,30 @@ namespace TourBooking.Application.Services
         {
             var booking = await _bookingRepository.GetAllAsQueryable().Where(x => x.BookingId == bookingViewModel.BookingId)
                 .Include(x => x.BookingPartyLeaders)
-                .Where(x => x.BookingId == bookingViewModel.BookingId).SingleOrDefaultAsync();//SetBookingModel(bookingViewModel);
-
-            booking.Name = bookingViewModel.Name;
-            booking.Currency = (Int16)bookingViewModel.Currency.GetValueOrDefault();
-
-            booking.Status = (booking.Status == (Int16)BookingStatus.Canceled || booking.Status == (Int16)BookingStatus.Confirmed)
-                                        && bookingViewModel.Status == (Int16)BookingStatus.Temporary ? booking.Status : (Int16)bookingViewModel.Status;
-            booking.Price = bookingViewModel.Price;
-            if (bookingViewModel.PartyLeaders != null)
+                .Where(x => x.BookingId == bookingViewModel.BookingId).SingleOrDefaultAsync();
+            if (bookingViewModel.Status == BookingStatus.Temporary && (booking.Status == (Int16)BookingStatus.Confirmed || booking.Status == (Int16)BookingStatus.Canceled))
             {
-                booking.BookingPartyLeaders = bookingViewModel.PartyLeaders.Select(x => new BookingPartyLeader
-                {
-                    PartyLeaderId = x.PartyLeaderId.GetValueOrDefault(),
-                    BookingId = booking.BookingId
-                }).ToList();
+                booking = Booking.UpdateBooking(bookingViewModel.BookingId.GetValueOrDefault(), bookingViewModel.Name, bookingViewModel.CreateDate.GetValueOrDefault(),
+                booking.Status, bookingViewModel.Price,
+                (Int16)bookingViewModel.Currency);
             }
+            else
+            {
+                booking = Booking.UpdateBooking(bookingViewModel.BookingId.GetValueOrDefault(), bookingViewModel.Name, bookingViewModel.CreateDate.GetValueOrDefault(),
+                (Int16)bookingViewModel.Status, bookingViewModel.Price,
+                (Int16)bookingViewModel.Currency);
+            }
+                
+            booking.BookingPartyLeaders = bookingViewModel.PartyLeaders.Select(x => new BookingPartyLeader
+            {
+                BookingId = booking.BookingId,
+                PartyLeaderId = x.PartyLeaderId.GetValueOrDefault()
+            }).ToList();
 
             _bookingRepository.Update(booking);
             return await _bookingRepository.SaveChangesAsync();
 
-
         }
-        private Booking SetBookingModel(AddOrUpdateBookingViewModel bookingViewModel)
-        {
-            var booking = new Booking
-            {
-                BookingId = Guid.NewGuid(),
-                Name = bookingViewModel.Name,
-                CreateDate = DateTime.Now,
-                Status = (Int16)bookingViewModel.Status.GetValueOrDefault(),
-                Currency = (Int16)bookingViewModel.Currency.GetValueOrDefault(),
-                Price = bookingViewModel.Price
-
-            };
-            booking.BookingPartyLeaders = bookingViewModel.PartyLeaders.Select(x => new BookingPartyLeader
-            {
-                PartyLeaderId = x.PartyLeaderId.GetValueOrDefault(),
-                BookingId = booking.BookingId
-            }).ToList();
-            return booking;
-        }
+        
     }
 }
