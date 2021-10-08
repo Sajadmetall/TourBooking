@@ -56,8 +56,10 @@ namespace TourBooking.Application.Services
                 BookingId = x.BookingId,
                 CreateDate = x.CreateDate,
                 Currency = (BookingCurrency?)x.Currency,
+                CurrencyText = BookingViewModel.SetCurrencyText((BookingCurrency)x.Currency),
                 Price = x.Price,
                 Status = (BookingStatus?)x.Status,
+                StatusText= BookingViewModel.SetStatusText((BookingStatus)x.Status),
                 Name = x.Name
             }).ToListAsync();
 

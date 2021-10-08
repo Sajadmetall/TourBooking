@@ -21,9 +21,9 @@
       <tbody>
         <tr *ngFor="let pd of service.list">
           <td (click)="populateForm(pd)">{{pd.name}}</td>
-          <td (click)="populateForm(pd)">{{pd.status}}</td>
+          <td (click)="populateForm(pd)">{{pd.statusText}}</td>
           <td (click)="populateForm(pd)">{{pd.price}}</td>
-          <td (click)="populateForm(pd)">{{pd.currency}}</td>
+          <td (click)="populateForm(pd)">{{pd.currencyText}}</td>
           <td (click)="populateForm(pd)">{{pd.createDate}}</td>
           <td>
             <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.bookingId)"></i>
