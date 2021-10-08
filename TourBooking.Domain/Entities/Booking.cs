@@ -11,11 +11,11 @@ namespace TourBooking.Domain.Entities
     public class Booking
     {
         public Guid BookingId { get;  set; }
-        [Required]
+       
         public string Name { get;  set; }
-        [Required]
+        
         public DateTime CreateDate { get;  set; }
-        [Required]
+        
         public Int16 Status { get;  set; }
         public string Price { get;  set; }
         public Nullable<Int16> Currency { get; set; }
@@ -26,10 +26,12 @@ namespace TourBooking.Domain.Entities
             var booking = new Booking(bookingId, name, createDate, status, price, currency);
             return booking;
         }
-        public static Booking UpdateBooking(Guid bookingId, string name, DateTime createDate, Int16 status, string price, Nullable<Int16> currency )
+        public static Booking UpdateBooking(Guid bookingId, string name, DateTime createDate, Int16 status,Int16 statusInViewModel, string price, Nullable<Int16> currency )
         {
-            var booking = new Booking(bookingId, name, createDate, status, price, currency);
-            return booking;
+            if (status != 0 && statusInViewModel == 0)
+                return new Booking(bookingId, name, createDate, status, price, currency);
+            else
+                return new Booking(bookingId, name, createDate, statusInViewModel, price, currency);
         }
         
         private Booking(Guid bookingId,string name, DateTime createDate, Int16 status, string price, Nullable<Int16> currency)

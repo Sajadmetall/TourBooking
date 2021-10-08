@@ -59,7 +59,7 @@ namespace TourBooking.Application.Services
                 CurrencyText = BookingViewModel.SetCurrencyText((BookingCurrency)x.Currency),
                 Price = x.Price,
                 Status = (BookingStatus?)x.Status,
-                StatusText= BookingViewModel.SetStatusText((BookingStatus)x.Status),
+                StatusText = BookingViewModel.SetStatusText((BookingStatus)x.Status),
                 Name = x.Name
             }).ToListAsync();
 
@@ -73,9 +73,9 @@ namespace TourBooking.Application.Services
         }
         public async Task<int> AddBooking(AddOrUpdateBookingViewModel bookingViewModel)
         {
-            var booking = Booking.AddBooking(Guid.NewGuid(),bookingViewModel.Name,DateTime.Now,(Int16)bookingViewModel.Status,
-                bookingViewModel.Price,(Int16)bookingViewModel.Currency);
-            
+            var booking = Booking.AddBooking(Guid.NewGuid(), bookingViewModel.Name, DateTime.Now, (Int16)bookingViewModel.Status,
+                bookingViewModel.Price, (Int16)bookingViewModel.Currency);
+
             booking.BookingPartyLeaders = bookingViewModel.PartyLeaders.Select(x => new BookingPartyLeader
             {
                 BookingId = booking.BookingId,
@@ -89,19 +89,12 @@ namespace TourBooking.Application.Services
             var booking = await _bookingRepository.GetAllAsQueryable().Where(x => x.BookingId == bookingViewModel.BookingId)
                 .Include(x => x.BookingPartyLeaders)
                 .Where(x => x.BookingId == bookingViewModel.BookingId).SingleOrDefaultAsync();
-            if (bookingViewModel.Status == BookingStatus.Temporary && (booking.Status == (Int16)BookingStatus.Confirmed || booking.Status == (Int16)BookingStatus.Canceled))
-            {
-                booking = Booking.UpdateBooking(bookingViewModel.BookingId.GetValueOrDefault(), bookingViewModel.Name, bookingViewModel.CreateDate.GetValueOrDefault(),
-                booking.Status, bookingViewModel.Price,
-                (Int16)bookingViewModel.Currency);
-            }
-            else
-            {
-                booking = Booking.UpdateBooking(bookingViewModel.BookingId.GetValueOrDefault(), bookingViewModel.Name, bookingViewModel.CreateDate.GetValueOrDefault(),
-                (Int16)bookingViewModel.Status, bookingViewModel.Price,
-                (Int16)bookingViewModel.Currency);
-            }
-                
+
+            booking = Booking.UpdateBooking(bookingViewModel.BookingId.GetValueOrDefault(), bookingViewModel.Name, bookingViewModel.CreateDate.GetValueOrDefault(),
+            booking.Status, (short)bookingViewModel.Status, bookingViewModel.Price,
+            (short)bookingViewModel.Currency);
+
+
             booking.BookingPartyLeaders = bookingViewModel.PartyLeaders.Select(x => new BookingPartyLeader
             {
                 BookingId = booking.BookingId,
@@ -112,6 +105,6 @@ namespace TourBooking.Application.Services
             return await _bookingRepository.SaveChangesAsync();
 
         }
-        
+
     }
 }

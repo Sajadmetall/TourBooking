@@ -86,7 +86,7 @@ namespace TourBooking.Controllers
         public async Task<IActionResult> DeleteBooking(Guid id)
         {
             await _bookingService.RemoveBooking(id);
-            return Ok(HttpStatusCode.Accepted);
+            return Ok();
 
         }
     }

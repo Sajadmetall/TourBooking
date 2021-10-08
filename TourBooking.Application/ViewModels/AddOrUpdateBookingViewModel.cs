@@ -8,14 +8,11 @@ namespace TourBooking.Application.ViewModels
     public class AddOrUpdateBookingViewModel
     {
         public Guid? BookingId { get; set; }
-        [Required]
         public string Name { get; set; }
-        [Required]
-        public Nullable<DateTime> CreateDate { get; set; }
-        [Required]
-        public Nullable<BookingStatus> Status { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public BookingStatus? Status { get; set; }
         public string Price { get; set; }
-        public Nullable<BookingCurrency> Currency { get; set; }
+        public BookingCurrency? Currency { get; set; }
         public List<PartyLeaderViewModel> PartyLeaders { get; set; }
     }
 }
