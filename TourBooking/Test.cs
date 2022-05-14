@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace TourBooking
 {
-    public class Test
+    public class test
     {
-        //test1
+        //test2
     }
 }
