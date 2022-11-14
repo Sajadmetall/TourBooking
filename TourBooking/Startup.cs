@@ -29,8 +29,8 @@ namespace TourBooking
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDBContext dataContext)
         {
             dataContext.Database.Migrate();
-            //ffffdszj
-
+            //ffffdszjdsfdfdfd
+            // second change
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
