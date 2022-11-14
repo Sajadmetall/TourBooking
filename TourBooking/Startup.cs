@@ -30,6 +30,7 @@ namespace TourBooking
         {
             dataContext.Database.Migrate();
             //ffffdszj
+            //second change
 
             if (env.IsDevelopment())
             {
