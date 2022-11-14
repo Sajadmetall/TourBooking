@@ -29,7 +29,7 @@ namespace TourBooking
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDBContext dataContext)
         {
             dataContext.Database.Migrate();
-            //ffffdszj
+            //ffffdszjdsfdfdfd
 
             if (env.IsDevelopment())
             {
