@@ -32,9 +32,8 @@ namespace TourBooking
             // changes 2
             // changes 3
             dataContext.Database.Migrate();
-            //ffffdszjdsfdfdfd
-            // second change
-            // third change
+            //ffffdszj
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
