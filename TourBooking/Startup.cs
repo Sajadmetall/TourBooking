@@ -1,16 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
-using TourBooking.Application.Services;
-using TourBooking.Domain.Contracts;
 using TourBooking.Extensions;
 using TourBooking.Infrastructure.DBContext;
-using TourBooking.Infrastructure.Repositories;
 
 namespace TourBooking
 {
@@ -27,14 +22,18 @@ namespace TourBooking
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureServices();
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDBContext dataContext)
         {
+            // changes 1
+            // changes 2
+            // changes 3 f
             dataContext.Database.Migrate();
-            
+            //ffffdszjddd
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
