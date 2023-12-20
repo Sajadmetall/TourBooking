@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 using TourBooking.Application.Services;
 using TourBooking.Domain.Contracts;
 using TourBooking.Infrastructure.DBContext;
@@ -15,7 +16,7 @@ namespace TourBooking.Extensions
 {
     public static class ConfigureServicesExtension
     {
-        public static void ConfigureServices(this IServiceCollection services)
+        public static void ConfigureServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddControllers();
             services.AddApiVersioning(x =>
@@ -25,7 +26,8 @@ namespace TourBooking.Extensions
                 x.ReportApiVersions = true;
             });
             services.AddDbContext<ApplicationDBContext>(
-                options => {
+                options =>
+                {
                     options.UseSqlServer("name=ConnectionStrings:DefaultConnection");
                     options.EnableSensitiveDataLogging();
                 });
@@ -35,10 +37,52 @@ namespace TourBooking.Extensions
 
             services.AddScoped(typeof(IPartyLeaderRepository), typeof(PartyLeaderRepository));
             services.AddScoped(typeof(IBookingService), typeof(BookingService));
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(setup =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TourBooking", Version = "v1" });
+                // Include 'SecurityScheme' to use JWT Authentication
+                var jwtSecurityScheme = new OpenApiSecurityScheme
+                {
+                    BearerFormat = "JWT",
+                    Name = "JWT Authentication",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = JwtBearerDefaults.AuthenticationScheme,
+                    Description = "Put **_ONLY_** your JWT Bearer token on textbox below!",
+
+                    Reference = new OpenApiReference
+                    {
+                        Id = JwtBearerDefaults.AuthenticationScheme,
+                        Type = ReferenceType.SecurityScheme
+                    }
+                };
+
+                setup.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
+
+                setup.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    { jwtSecurityScheme, Array.Empty<string>() }
+                });
             });
+
+            var secretKey = configuration.GetValue<string>("SecretKey");
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey ?? string.Empty)),
+                    ValidateLifetime = true,
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ClockSkew = TimeSpan.Zero
+                };
+            });
+
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",

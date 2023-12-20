@@ -10,8 +10,8 @@ using TourBooking.Infrastructure.DBContext;
 namespace TourBooking.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20211008190928_m1")]
-    partial class m1
+    [Migration("20230516113820_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
