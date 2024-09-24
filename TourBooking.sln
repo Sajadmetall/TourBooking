@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31205.134
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourBooking", "TourBooking\TourBooking.csproj", "{5E931C32-C9A6-454F-B4D6-D28AEEE5CC98}"
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "angular-tour-booking", "angular-tour-booking\", "{88169939-6466-4774-9BFC-3F16589E218F}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_53039"
 		Debug.AspNetCompiler.PhysicalPath = "angular-tour-booking\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53039\"
@@ -30,7 +30,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourBooking.Application", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourBooking.Infrastructure", "TourBooking.Infrastructure\TourBooking.Infrastructure.csproj", "{DBA0FB1C-7B7C-40C7-A0FF-48644E00C3A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourBooking.Domain", "TourBooking.Domain\TourBooking.Domain.csproj", "{89E6B26A-7280-4B64-94AE-F154BA57E3B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourBooking.Domain", "TourBooking.Domain\TourBooking.Domain.csproj", "{89E6B26A-7280-4B64-94AE-F154BA57E3B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
