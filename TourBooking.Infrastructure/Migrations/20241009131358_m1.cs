@@ -1,10 +1,16 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace TourBooking.Infrastructure.Migrations
 {
-    public partial class Initial : Migration
+    /// <inheritdoc />
+    public partial class m1 : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -62,12 +68,11 @@ namespace TourBooking.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "PartyLeader",
                 columns: new[] { "PartyLeaderId", "Name" },
-                values: new object[] { new Guid("d2fc8dea-e40c-4b09-805c-b19c99991f24"), "AliBaba" });
-
-            migrationBuilder.InsertData(
-                table: "PartyLeader",
-                columns: new[] { "PartyLeaderId", "Name" },
-                values: new object[] { new Guid("5b8a57ee-b147-4f8c-b7e6-f8725119deb4"), "EliGasht" });
+                values: new object[,]
+                {
+                    { new Guid("5b8a57ee-b147-4f8c-b7e6-f8725119deb4"), "EliGasht" },
+                    { new Guid("d2fc8dea-e40c-4b09-805c-b19c99991f24"), "AliBaba" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_BookingPartyLeaders_PartyLeaderId",
@@ -75,6 +80,7 @@ namespace TourBooking.Infrastructure.Migrations
                 column: "PartyLeaderId");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

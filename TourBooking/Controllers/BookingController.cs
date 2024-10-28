@@ -14,8 +14,8 @@ using TourBooking.Application.ViewModelValidators;
 namespace TourBooking.Controllers
 {
     [EnableCors("CorsPolicy")]
-    [ApiVersion("1.0")]
-    [Route("api/[controller]/v{version:apiVersion}")]
+    //[ApiVersion("1.0")]
+    [Route("[controller]")]
     [Authorize]
     [ApiController]
     public class BookingController : ControllerBase

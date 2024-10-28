@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "identityapp1": {
+      "type": "identityapp"
+    },
+    "apis1": {
+      "type": "apis"
+    }
+  }
+}

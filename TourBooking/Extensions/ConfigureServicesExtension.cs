@@ -1,12 +1,6 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using System;
-using System.Text;
 using TourBooking.Application.Services;
 using TourBooking.Domain.Contracts;
 using TourBooking.Infrastructure.DBContext;
@@ -19,12 +13,12 @@ namespace TourBooking.Extensions
         public static void ConfigureServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddControllers();
-            services.AddApiVersioning(x =>
-            {
-                x.DefaultApiVersion = new ApiVersion(1, 0);
-                x.AssumeDefaultVersionWhenUnspecified = true;
-                x.ReportApiVersions = true;
-            });
+            //services.AddApiVersioning(x =>
+            //{
+            //    x.DefaultApiVersion = new ApiVersion(1, 0);
+            //    x.AssumeDefaultVersionWhenUnspecified = true;
+            //    x.ReportApiVersions = true;
+            //});
             services.AddDbContext<ApplicationDBContext>(
                 options =>
                 {
@@ -37,51 +31,55 @@ namespace TourBooking.Extensions
 
             services.AddScoped(typeof(IPartyLeaderRepository), typeof(PartyLeaderRepository));
             services.AddScoped(typeof(IBookingService), typeof(BookingService));
-            services.AddSwaggerGen(setup =>
-            {
-                // Include 'SecurityScheme' to use JWT Authentication
-                var jwtSecurityScheme = new OpenApiSecurityScheme
-                {
-                    BearerFormat = "JWT",
-                    Name = "JWT Authentication",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.Http,
-                    Scheme = JwtBearerDefaults.AuthenticationScheme,
-                    Description = "Put **_ONLY_** your JWT Bearer token on textbox below!",
+            // Add Swagger services
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
 
-                    Reference = new OpenApiReference
-                    {
-                        Id = JwtBearerDefaults.AuthenticationScheme,
-                        Type = ReferenceType.SecurityScheme
-                    }
-                };
+            //services.AddSwaggerGen(setup =>
+            //{
+            //    // Include 'SecurityScheme' to use JWT Authentication
+            //    var jwtSecurityScheme = new OpenApiSecurityScheme
+            //    {
+            //        BearerFormat = "JWT",
+            //        Name = "JWT Authentication",
+            //        In = ParameterLocation.Header,
+            //        Type = SecuritySchemeType.Http,
+            //        Scheme = JwtBearerDefaults.AuthenticationScheme,
+            //        Description = "Put **_ONLY_** your JWT Bearer token on textbox below!",
 
-                setup.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
+            //        Reference = new OpenApiReference
+            //        {
+            //            Id = JwtBearerDefaults.AuthenticationScheme,
+            //            Type = ReferenceType.SecurityScheme
+            //        }
+            //    };
 
-                setup.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    { jwtSecurityScheme, Array.Empty<string>() }
-                });
-            });
+            //    setup.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
+
+            //    setup.AddSecurityRequirement(new OpenApiSecurityRequirement
+            //    {
+            //        { jwtSecurityScheme, Array.Empty<string>() }
+            //    });
+            //});
 
             var secretKey = configuration.GetValue<string>("SecretKey");
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey ?? string.Empty)),
-                    ValidateLifetime = true,
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    ClockSkew = TimeSpan.Zero
-                };
-            });
+            //services.AddAuthentication(options =>
+            //{
+            //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
+            //}).AddJwtBearer(options =>
+            //{
+            //    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+            //    {
+            //        ValidateIssuerSigningKey = true,
+            //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey ?? string.Empty)),
+            //        ValidateLifetime = true,
+            //        ValidateIssuer = false,
+            //        ValidateAudience = false,
+            //        ClockSkew = TimeSpan.Zero
+            //    };
+            //});
 
             services.AddCors(options =>
             {
