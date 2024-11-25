@@ -34,21 +34,27 @@ namespace TourBooking
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TourBooking v1"));
-            }
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "TourBooking API v1");
+                    c.RoutePrefix = "swagger";
 
+                    c.OAuthClientId("d8319494-9692-47d6-a7fb-3c23ebf26ece");
+                    c.OAuthUsePkce(); // Use Proof Key for Code Exchange for security
+                    c.OAuthScopeSeparator(" ");
+                    c.OAuthAppName("TourBooking API");
+                });
+            }
+            
             app.UseExceptionHandler("/error");
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
+            app.UseCors();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseCors("CorsPolicy");
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
 
         }
     }
