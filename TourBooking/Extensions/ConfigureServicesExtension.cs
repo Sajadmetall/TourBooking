@@ -80,7 +80,7 @@ namespace TourBooking.Extensions
             {
                 options.AddDefaultPolicy(policy =>
                 {
-                    policy.WithOrigins("https://localhost:49153/", "https://localhost:5001/") // Or restrict to specific origins with .WithOrigins("http://example.com")
+                    policy.WithOrigins("https://localhost:49155/", "https://localhost:5001/") // Or restrict to specific origins with .WithOrigins("http://example.com")
                           .AllowAnyMethod()
                           .AllowAnyHeader();
                 });

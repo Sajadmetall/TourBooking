@@ -1,15 +1,17 @@
+
 services:
   tourbooking:
     image: tourbooking
     build:
       context: .
-      dockerfile: TourBooking/Dockerfile
+      dockerfile: Dockerfile
     ports:
       - "8080:8080" # Host port 8080 to container port 8080
       - "8081:8081" # Host port 8081 to container port 8081
     environment:
-      - CORS_ALLOWED_ORIGINS=http://localhost:49162;http://example.com
-      - ASPNETCORE_ENVIRONMENT=Development
       - AZURE_CLIENT_ID=d8319494-9692-47d6-a7fb-3c23ebf26ece
       - AZURE_TENANT_ID=7c49e7f3-6eea-4329-9411-c56a19dcbb35
       - AZURE_CLIENT_SECRET=vFe8Q~GIZjJW5ECIfYXgUCLnYVK8jGedLYAf8bIe
+      - DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
+      - ASPNETCORE_ENVIRONMENT=Development
+    restart: always
